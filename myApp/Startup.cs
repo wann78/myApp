@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using myApp.Data;
+using myApp.ViewModels;
+using RestSharp;
 
 namespace myApp
 {
@@ -28,7 +30,8 @@ namespace myApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<IOverviewViewModel, OverviewViewModel>();
+            services.AddTransient<IRestClient, RestClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
